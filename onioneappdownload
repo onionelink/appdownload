@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Onione Redirect</title>
+<script>
+  let user = navigator.userAgent.toLowerCase();
+  if (user.includes("android")) {
+    window.location.href = "https://play.google.com/store/apps/details?id=com.ontacthealth.onione&hl=ko";
+  } else if (user.includes("iphone") || user.includes("ipad")) {
+    window.location.href = "https://apps.apple.com/kr/app/onione/id1671484772";
+  } else {
+    // 아무 앱스토어가 없는 경우 → 안내 페이지 보여줌
+    alert("앱스토어에 연결할 수 없습니다.");
+  }
+</script>
+</head>
+<body>
+<p>자동으로 이동 중...</p>
+</body>
+</html>
