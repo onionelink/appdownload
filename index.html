@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ONiONE 앱으로 이동합니다…</title>
+  <meta name="robots" content="noindex">
+  <style>
+    body { font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif; margin: 0; padding: 24px; }
+    .wrap { max-width: 520px; margin: 0 auto; }
+    h1 { font-size: 20px; margin: 0 0 16px; }
+    p { color: #333; line-height: 1.6; margin: 0 0 16px; }
+    .btns { display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    a.button { display:inline-block; padding:12px 14px; border:1px solid #ddd; border-radius:10px; text-decoration:none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>ONiONE 앱으로 이동 중…</h1>
+    <p>잠시만 기다려 주세요. 기기에 맞는 앱 스토어로 이동합니다.</p>
+    <div class="btns">
+      <a class="button" id="btn-ios" href="https://apps.apple.com/kr/app/onione/id1671484772">iOS 앱스토어로 이동</a>
+      <a class="button" id="btn-android" href="https://play.google.com/store/apps/details?id=com.ontacthealth.onione&hl=ko">안드로이드 플레이스토어로 이동</a>
+    </div>
+    <p id="note" style="font-size:13px;color:#666;margin-top:12px;"></p>
+  </div>
+
+  <script>
+    (function(){
+      var params = new URLSearchParams(location.search);
+      var force = params.get('store'); // 'ios' or 'android' (테스트용)
+
+      var IOS_URL = "https://apps.apple.com/kr/app/onione/id1671484772";
+      var AND_URL = "https://play.google.com/store/apps/details?id=com.ontacthealth.onione&hl=ko";
+
+      var ua = navigator.userAgent || "";
+      var isIOS = /iPhone|iPad|iPod/i.test(ua);
+      var isAndroid = /Android/i.test(ua);
+
+      function go(url){ window.location.replace(url); }
+
+      // 테스트 강제 분기
+      if (force === 'ios') return go(IOS_URL);
+      if (force === 'android') return go(AND_URL);
+
+      if (isIOS) return go(IOS_URL);
+      if (isAndroid) return go(AND_URL);
+
+      // PC/기타 - 안내 문구 표기
+      document.getElementById('note').textContent = "스마트폰 카메라로 QR을 스캔하면 자동으로 앱 스토어로 이동합니다.";
+    })();
+  </script>
+</body>
+</html>
